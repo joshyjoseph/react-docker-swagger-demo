@@ -1,0 +1,6 @@
+Werkzeug==0.16.1
+flask==1.0
+flask_cors
+Flask-SQLAlchemy
+psycopg2-binary
+flask-swagger-ui==3.36.0

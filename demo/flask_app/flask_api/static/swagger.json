@@ -1,0 +1,125 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a sample swagger documentation for demo apis",
+    "version": "1.0.0",
+    "title": "Swagger Documentation"
+  },
+  "host": "localhost:5678",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "add",
+      "description": "Add new team and role to DB"
+    },
+    {
+      "name": "fetch",
+      "description": "Fetch the team info from DB"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/add": {
+      "post": {
+        "tags": [
+          "add"
+        ],
+        "summary": "Add new team and role to DB",
+        "description": "Add new team and role to DB",
+        "operationId": "add",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Team Object that needs to be inserted into the DB. It should containn team_name and team_role in JSON format",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TeamModel"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/fetch": {
+      "get": {
+        "tags": [
+          "fetch"
+        ],
+        "summary": "Retrives all the Data from DB",
+        "description": "Retrives all the Data from DB",
+        "operationId": "fetch",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/fetch/{teamName}": {
+      "get": {
+        "tags": [
+          "fetch"
+        ],
+        "summary": "Retrives all the Data from DB",
+        "description": "Retrives all the Data from DB",
+        "operationId": "fetch/{teamName}",
+        "parameters": [
+          {
+            "name": "teamName",
+            "in": "path",
+            "description": "Name of Team",
+            "required": true,
+            "type": "string",
+            "format": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "404": {
+            "description": "Pet not found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "TeamModel": {
+      "type": "object",
+      "required": [
+        "teamName",
+        "teamRole"
+      ],
+      "properties": {
+        "teamName": {
+          "type": "string",
+          "example": "team1"
+        },
+        "teamRole": {
+          "type": "string",
+          "example": "role1"
+        }
+      }
+    }
+  }
+}

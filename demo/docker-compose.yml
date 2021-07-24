@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+  server:
+    build: ./flask_app
+    ports:
+      - "5678:5678"
+    volumes:
+      - ./flask_app/flask_api:/flask_api
+    environment:
+      FLASK_ENV: "development"
+    links:
+      - db
+
+  web:
+    build: ./react_app
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./react_app:/user/src/app
+    depends_on:
+      - server
+
+  db:
+    image: postgres:12-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=demo_user
+      - POSTGRES_PASSWORD=abcd1234
+      - POSTGRES_DB=demo_db
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:
