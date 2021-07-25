@@ -7,7 +7,7 @@
     cd ..
     docker-compose down && docker-compose up --build
     
-    # open `http://localhost:3000/` on browser
+    # open `http://localhost:3000/` in browser
 ```
 
 
